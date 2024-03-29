@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/estilo.css">
+    <title>Juego</title>
+</head>
+<body>
+<div class="container" th:fragment="pregunta(pregunta)">
+    <main class="juego">
+        <p id="txt-pregunta" class="pregunta" th:text="${pregunta}"></p>
+
+        <div class="opciones" id="opciones">
+            <button class="opcion" th:each="opcion : ${opciones}" th:id="${opcion}" th:text="${opcion}" onclick="verificarRespuesta(this)"></button>
+        </div>
+
+        <button class="btn" id="siguiente" onclick="redirectToMain()">Volver</button>
+    </main>
+    <div style="align-items: center; text-align: center; display: grid;color: white; margin-top: 20px;">
+        <h2>Comodines:</h2>
+        <ul style="list-style: none">
+            <li><button style="background-color: white;
+            color: black;
+            border: none;
+            border-radius: 45%;
+            padding: 20px;
+            font-size: 16px;
+            cursor: pointer;" onclick="comodin()" id="comodin">50/50</button></li>
+        </ul>
+    </div>
+</div>
+<p id="respuesta" th:text="${respuesta}" style="display: none"></p>
+
+<script>
+    function verificarRespuesta(boton) {
+        var opcionSeleccionada = boton.innerText.trim();
+        var respuestaCorrecta = document.querySelector("#respuesta").innerText.trim();
+
+        if (opcionSeleccionada === respuestaCorrecta) {
+            boton.style.backgroundColor = "green";
+            boton.style.color="white";
+        } else {
+            boton.style.backgroundColor = "red";
+            boton.style.color="white";
+        }
+    }
+
+    function redirectToMain() {
+        window.location.href = '/';
+    }
+
+    function comodin() {
+        // Obtener todos los botones de opción
+        var botonesOpcion = document.querySelectorAll(".opcion");
+
+        var botonComodin = document.querySelector("#comodin")
+
+        // Convertir la lista de nodos de botón en un array
+        var listaBotones = Array.from(botonesOpcion);
+
+        // Crear un array para almacenar los índices de los botones seleccionados
+        var indicesSeleccionados = [];
+
+        // Obtener el índice de la respuesta correcta
+        var respuestaCorrecta = document.querySelector("#respuesta").innerText.trim();
+        var indiceRespuestaCorrecta = listaBotones.findIndex(function(boton) {
+            return boton.innerText.trim() === respuestaCorrecta;
+        });
+
+        // Elegir dos índices aleatorios únicos diferentes al índice de la respuesta correcta
+        while (indicesSeleccionados.length < 2) {
+            var indice = Math.floor(Math.random() * listaBotones.length);
+            if (indice !== indiceRespuestaCorrecta && !indicesSeleccionados.includes(indice)) {
+                indicesSeleccionados.push(indice);
+            }
+        }
+
+        // Iterar sobre los botones de opción y aplicar el cambio de estilo a los seleccionados
+        indicesSeleccionados.forEach(function(indice) {
+            var boton = listaBotones[indice];
+            boton.style.backgroundColor = "red";
+            boton.style.color = "white";
+        });
+        botonComodin.style.opacity="0.5";
+        botonComodin.disabled = true;
+    }
+
+</script>
+</body>
+</html>

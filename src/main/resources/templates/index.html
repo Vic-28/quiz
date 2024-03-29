@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilo.css">
+    <title>Game Quiz</title>
+</head>
+<body>
+<div class="container">
+    <main class="menu">
+        <h1>Elige una categoría</h1>
+        <div class="categorias">
+            <div class="categoria" id="general" onclick="redirectToCultura()" >
+                <img src="/images/general.png" alt="" class="foto-categoria">
+                <h3>Cultura</h3>
+                <h4>+2 Puntos</h4>
+            </div>
+            <div class="categoria" id="musica" onclick="redirectToMusica()" >
+                <img src="/images/musica.png" alt="" class="foto-categoria">
+                <h3>Música</h3>
+                <h4>+2 Puntos</h4>
+            </div>
+            <div class="categoria" id="peliculas" onclick="redirectToPeliculas()" >
+                <img src="/images/peliculas.png" alt="" class="foto-categoria">
+                <h3>Películas</h3>
+                <h4>+2 Puntos</h4>
+            </div>
+            <div class="categoria" id="deportes" onclick="redirectToDeportes()">
+                <img src="/images/deportes.png" alt="" class="foto-categoria">
+                <h3>Deportes</h3>
+                <h4>+2 Puntos</h4>
+            </div>
+            <div class="categoria" id="programacion" onclick="redirectToProgramacion()" >
+                <img src="/images/programacion.png" alt="" class="foto-categoria">
+                <h3>Programación</h3>
+                <h4>+3 Puntos</h4>
+            </div>
+            <div class="categoria" id="juegos"  onclick="redirectToVideojuegos()" >
+                <img src="/images/juegos.png" alt="" class="foto-categoria">
+                <h3>Video Juegos</h3>
+                <h4>+2 Puntos</h4>
+            </div>
+            <div class="categoria" id="grupo" onclick="redirectToGrupo()">
+                <img src="/images/grupo-confondo-removebg-preview.png" alt="" class="foto-categoria">
+                <h3>Preguntas del Grupo</h3>
+                <h4>+4 Puntos</h4>
+            </div>
+            <div class="categoria" id="victor" onclick="redirectToVictor()">
+                <img src="/images/victor-confondo-removebg-preview.png" alt="" class="foto-categoria" id="foto-victor">
+                <h3>Preguntas de Victor</h3>
+                <h4>+5 Puntos</h4>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
+
+<script>
+    function redirectToProgramacion() {
+        window.location.href = '/juego/programacion';
+    }
+    function redirectToGrupo() {
+        window.location.href = '/juego/grupo';
+    }
+    function redirectToVictor() {
+        window.location.href = '/juego/victor';
+    }
+
+    function redirectToDeportes() {
+        window.location.href = '/juego/deportes';
+    }
+    function redirectToHistoria() {
+        window.location.href = '/juego/historia';
+    }
+
+    function redirectToPeliculas() {
+        window.location.href = '/juego/peliculas';
+    }
+
+    function redirectToCultura() {
+        window.location.href = '/juego/cultura';
+    }
+
+    function redirectToMusica() {
+        window.location.href = '/juego/musica';
+    }
+    function redirectToVideojuegos() {
+        window.location.href = '/juego/videojuegos';
+    }
+</script>
